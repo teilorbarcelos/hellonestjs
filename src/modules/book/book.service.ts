@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateBookDto } from './dto/create-book.dto';
+import { FindAllBookDto } from './dto/find-all-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 
 @Injectable()
@@ -17,8 +18,53 @@ export class BookService {
     return book;
   }
 
-  findAll() {
-    return `This action returns all book`;
+  async findAll(query: FindAllBookDto) {
+    const books = await this.prisma.book.findMany({
+      where: {
+        AND: [
+          {
+            title: {
+              contains: query.title,
+              mode: 'insensitive'
+            }
+          },
+          {
+            description: {
+              contains: query.description,
+              mode: 'insensitive'
+            }
+          },
+          {
+            bar_code: {
+              contains: query.bar_code
+            }
+          },
+          {
+            OR: [
+              {
+                title: {
+                  contains: query.search,
+                  mode: 'insensitive'
+                }
+              },
+              {
+                description: {
+                  contains: query.search,
+                  mode: 'insensitive'
+                }
+              },
+              {
+                bar_code: {
+                  contains: query.search
+                }
+              }
+            ]
+          }
+        ]
+      },
+
+    })
+    return books;
   }
 
   findOne(id: number) {
