@@ -34,6 +34,7 @@
     "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.1.0",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
@@ -47,6 +48,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "28.0.3",
+    "jest-mock-extended": "^2.0.6",
     "prettier": "^2.3.2",
     "prisma": "^3.14.0",
     "source-map-support": "^0.5.20",

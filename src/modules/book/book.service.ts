@@ -67,15 +67,31 @@ export class BookService {
     return books;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} book`;
+  async findOne(id: string) {
+    const book = await this.prisma.book.findFirst({
+      where: {
+        id
+      }
+    })
+    return book;
   }
 
-  update(id: number, updateBookDto: UpdateBookDto) {
-    return `This action updates a #${id} book`;
+  async update(id: string, data: UpdateBookDto) {
+    const book = await this.prisma.book.update({
+      where: {
+        id
+      },
+      data
+    })
+    return book;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} book`;
+  async remove(id: string) {
+    await this.prisma.book.delete({
+      where: {
+        id
+      }
+    })
+    return undefined;
   }
 }

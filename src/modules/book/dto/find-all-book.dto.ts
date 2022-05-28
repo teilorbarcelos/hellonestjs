@@ -2,11 +2,11 @@ import { ApiPropertyOptional } from "@nestjs/swagger"
 
 export class FindAllBookDto {
   @ApiPropertyOptional()
-  search: string
+  search?: string
   @ApiPropertyOptional()
-  title: string
+  title?: string
   @ApiPropertyOptional()
-  description: string
+  description?: string
   @ApiPropertyOptional()
-  bar_code: string
+  bar_code?: string
 }

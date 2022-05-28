@@ -32,7 +32,7 @@ export class BookController {
   @ApiResponse({ status: 200, description: 'Retorna o livro com sucesso', type: IndexBookSwagger })
   @ApiResponse({ status: 404, description: 'Falha ao buscar o livro' })
   findOne(@Param('id') id: string) {
-    return this.bookService.findOne(+id);
+    return this.bookService.findOne(id);
   }
 
   @Patch(':id')
@@ -40,7 +40,7 @@ export class BookController {
   @ApiResponse({ status: 200, description: 'Retorna a lista de livros com sucesso', type: IndexBookSwagger })
   @ApiResponse({ status: 404, description: 'Falha ao buscar o livro' })
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-    return this.bookService.update(+id, updateBookDto);
+    return this.bookService.update(id, updateBookDto);
   }
 
   @Delete(':id')
@@ -48,6 +48,6 @@ export class BookController {
   @ApiResponse({ status: 204, description: 'Livro escluido com sucesso' })
   @ApiResponse({ status: 404, description: 'Falha ao buscar o livro' })
   remove(@Param('id') id: string) {
-    return this.bookService.remove(+id);
+    return this.bookService.remove(id);
   }
 }
